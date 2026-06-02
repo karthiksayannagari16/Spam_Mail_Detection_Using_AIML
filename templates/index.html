@@ -1,65 +1,208 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <title>Spam Mail Detection</title>
 
-<title>Spam Mail Detection</title>
+    <link rel="stylesheet"
+          href="{% static 'style.css' %}">
 
-<link rel="stylesheet"
-      href="{% static 'style.css' %}">
+    <style>
 
-</head>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+            background:linear-gradient(135deg,#667eea,#764ba2);
+        }
+
+        .container{
+            width:100%;
+            max-width:900px;
+        }
+
+        .card{
+            background:#ffffff;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        h1{
+            color:#222;
+            font-size:2.5rem;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#666;
+            margin-bottom:25px;
+            font-size:1rem;
+        }
+
+        textarea{
+            width:100%;
+            min-height:220px;
+            padding:15px;
+            border:2px solid #ddd;
+            border-radius:12px;
+            resize:vertical;
+            outline:none;
+            font-size:16px;
+            transition:all 0.3s ease;
+        }
+
+        textarea:focus{
+            border-color:#667eea;
+            box-shadow:0 0 12px rgba(102,126,234,0.3);
+        }
+
+        button{
+            width:100%;
+            margin-top:20px;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:#667eea;
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:all 0.3s ease;
+        }
+
+        button:hover{
+            background:#5563d6;
+            transform:translateY(-2px);
+        }
+
+        .result{
+            margin-top:25px;
+            padding:20px;
+            border-radius:12px;
+            background:#f8f9ff;
+            border-left:6px solid #667eea;
+            word-wrap:break-word;
+        }
+
+        .result h2{
+            color:#222;
+            font-size:1.2rem;
+        }
+
+        /* Tablet View */
+        @media(max-width:768px){
+
+            .card{
+                padding:30px;
+            }
+
+            h1{
+                font-size:2rem;
+            }
+
+            textarea{
+                min-height:180px;
+            }
+        }
+
+        /* Mobile View */
+        @media(max-width:480px){
+
+            body{
+                padding:10px;
+            }
+
+            .card{
+                padding:20px;
+                border-radius:15px;
+            }
+
+            h1{
+                font-size:1.6rem;
+            }
+
+            .subtitle{
+                font-size:0.9rem;
+            }
+
+            textarea{
+                min-height:150px;
+                font-size:14px;
+            }
+
+            button{
+                font-size:15px;
+                padding:12px;
+            }
+
+            .result h2{
+                font-size:1rem;
+            }
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<div class="card">
+        <div class="card">
 
-<h1>Spam Mail Detection</h1>
+            <h1>📧 Spam Mail Detection</h1>
 
-<p class="subtitle">
-AI & Machine Learning Based Email Classification
-</p>
+            <p class="subtitle">
+                AI & Machine Learning Based Email Classification System
+            </p>
 
-<form method="POST">
+            <form method="POST">
 
-{% csrf_token %}
+                {% csrf_token %}
 
-<textarea
-name="email"
-placeholder="Paste Email Here..."
-required>
-</textarea>
+                <textarea
+                    name="email"
+                    placeholder="Paste Email Here..."
+                    required></textarea>
 
-<button type="submit">
-Analyze Email
-</button>
+                <button type="submit">
+                    Analyze Email
+                </button>
 
-</form>
+            </form>
 
-{% if prediction_text %}
+            {% if prediction_text %}
 
-<div class="result">
+            <div class="result">
 
-<h2>{{ prediction_text }}</h2>
+                <h2>{{ prediction_text }}</h2>
 
-</div>
+            </div>
 
-{% endif %}
+            {% endif %}
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </body>
 
