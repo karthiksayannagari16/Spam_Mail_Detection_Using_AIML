@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Spam Mail Detection</title>
+
+<link rel="stylesheet"
+      href="{% static 'style.css' %}">
+
+</head>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Spam Mail Detection</h1>
+
+<p class="subtitle">
+AI & Machine Learning Based Email Classification
+</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<textarea
+name="email"
+placeholder="Paste Email Here..."
+required>
+</textarea>
+
+<button type="submit">
+Analyze Email
+</button>
+
+</form>
+
+{% if prediction_text %}
+
+<div class="result">
+
+<h2>{{ prediction_text }}</h2>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>
